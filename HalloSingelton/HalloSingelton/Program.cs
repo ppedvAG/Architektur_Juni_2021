@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace HalloSingelton
 {
@@ -8,7 +9,10 @@ namespace HalloSingelton
         {
             Console.WriteLine("Hello World!");
 
-            Logger.Instance.Log("App startet");
+            for (int i = 0; i < 10; i++)
+            {
+                Task.Run(() => Logger.Instance.Log("App startet"));
+            }
 
             Logger.Instance.Log("App Ende");
 

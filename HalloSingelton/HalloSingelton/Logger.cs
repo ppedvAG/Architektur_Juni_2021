@@ -5,21 +5,25 @@ namespace HalloSingelton
     class Logger
     {
         static Logger _instance = null;
-
+        static object _lock = new object();
         public static Logger Instance
         {
             get
             {
-                if (_instance == null)
-                    _instance = new Logger();
+                lock (_lock)
+                {
+                    if (_instance == null)
+                        _instance = new Logger();
 
-                return _instance;
+                    return _instance;
+                }
             }
         }
 
         static int instanceCounter = 0;
         private Logger()
         {
+            Console.WriteLine("New instance of Logger");
             instanceCounter++;
         }
 
