@@ -1,3 +1,4 @@
+using Microsoft.QualityTools.Testing.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -54,6 +55,30 @@ namespace Calculator.Tests
             var result = calc.Sum(a, b);
 
             Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void IsWeekend()
+        {
+            var calc = new Calc();
+
+            using (ShimsContext.Create())
+            {
+                System.Fakes.ShimDateTime.NowGet = () => new DateTime(2021, 7, 12);
+                Assert.IsFalse(calc.IsWeekend());
+                System.Fakes.ShimDateTime.NowGet = () => new DateTime(2021, 7, 13);
+                Assert.IsFalse(calc.IsWeekend());
+                System.Fakes.ShimDateTime.NowGet = () => new DateTime(2021, 7, 14);
+                Assert.IsFalse(calc.IsWeekend());
+                System.Fakes.ShimDateTime.NowGet = () => new DateTime(2021, 7, 15);
+                Assert.IsFalse(calc.IsWeekend());
+                System.Fakes.ShimDateTime.NowGet = () => new DateTime(2021, 7, 16);
+                Assert.IsFalse(calc.IsWeekend());
+                System.Fakes.ShimDateTime.NowGet = () => new DateTime(2021, 7, 17);
+                Assert.IsTrue(calc.IsWeekend());
+                System.Fakes.ShimDateTime.NowGet = () => new DateTime(2021, 7, 18);
+                Assert.IsTrue(calc.IsWeekend());
+            }
         }
 
     }
