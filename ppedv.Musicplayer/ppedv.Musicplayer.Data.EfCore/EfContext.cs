@@ -12,7 +12,9 @@ namespace ppedv.Musicplayer.Data.EfCore
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MusicplayerDB_dev;Trusted_Connection=true;");
+            optionsBuilder
+                .UseLazyLoadingProxies()
+                .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MusicplayerDB_dev;Trusted_Connection=true;");
 
             base.OnConfiguring(optionsBuilder);
         }
