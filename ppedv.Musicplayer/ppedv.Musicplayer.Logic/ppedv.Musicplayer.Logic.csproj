@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ppedv.Musicplayer.Data.EfCore\ppedv.Musicplayer.Data.EfCore.csproj" />
+    <ProjectReference Include="..\ppedv.Musicplayer.Model\ppedv.Musicplayer.Model.csproj" />
+  </ItemGroup>
+
+</Project>

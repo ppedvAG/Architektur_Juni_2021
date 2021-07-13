@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31423.177
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Musicplayer.Model", "ppedv.Musicplayer.Model\ppedv.Musicplayer.Model.csproj", "{C6398CC9-CB27-4A71-9BF0-1F1D213DB047}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.Musicplayer.Model", "ppedv.Musicplayer.Model\ppedv.Musicplayer.Model.csproj", "{C6398CC9-CB27-4A71-9BF0-1F1D213DB047}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Musicplayer.Data.EfCore", "ppedv.Musicplayer.Data.EfCore\ppedv.Musicplayer.Data.EfCore.csproj", "{FC65F475-D8E9-42B5-9BB7-107DA11AAD7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.Musicplayer.Data.EfCore", "ppedv.Musicplayer.Data.EfCore\ppedv.Musicplayer.Data.EfCore.csproj", "{FC65F475-D8E9-42B5-9BB7-107DA11AAD7F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Musicplayer.Data.EfCore.Tests", "ppedv.Musicplayer.Data.EfCore.Tests\ppedv.Musicplayer.Data.EfCore.Tests.csproj", "{6D47ECCC-5F89-4CAB-9D2C-F39D4150DD49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Musicplayer.Logic", "ppedv.Musicplayer.Logic\ppedv.Musicplayer.Logic.csproj", "{B8CD6370-AC98-4C74-B990-4D880668BBA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{6D47ECCC-5F89-4CAB-9D2C-F39D4150DD49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D47ECCC-5F89-4CAB-9D2C-F39D4150DD49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D47ECCC-5F89-4CAB-9D2C-F39D4150DD49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8CD6370-AC98-4C74-B990-4D880668BBA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8CD6370-AC98-4C74-B990-4D880668BBA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8CD6370-AC98-4C74-B990-4D880668BBA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8CD6370-AC98-4C74-B990-4D880668BBA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
