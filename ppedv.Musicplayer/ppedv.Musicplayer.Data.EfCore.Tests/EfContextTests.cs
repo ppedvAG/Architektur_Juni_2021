@@ -64,6 +64,50 @@ namespace ppedv.Musicplayer.Data.EfCore.Tests
             }
         }
 
+        [TestMethod]
+        public void Can_CRUD_Artist()
+        {
+            var art = new Artist() { Name = "Prince" };
+            string newName = "The Artist formaly known as Prince";
+
+            using (var con = new EfContext())
+            {
+                //CREATE
+                con.Artists.Add(art);
+                con.SaveChanges();
+            }
+
+            using (var con = new EfContext())
+            {
+                //READ
+                var loaded = con.Artists.Find(art.Id);
+                loaded.Should().NotBeNull();
+
+                //UPDATE
+                loaded.Name = newName;
+                con.SaveChanges();
+            }
+
+            using (var con = new EfContext())
+            {
+                //check UPDATE
+                var loaded = con.Artists.Find(art.Id);
+                loaded.Name.Should().Be(newName);
+
+                //DELETE
+                con.Artists.Remove(loaded);
+                con.SaveChanges();
+            }
+
+            using (var con = new EfContext())
+            {
+                //check DELETE
+                var loaded = con.Artists.Find(art.Id);
+                loaded.Should().BeNull();
+            }
+
+        }
+
     }
 
     internal class PropertyNameOmitter : ISpecimenBuilder
