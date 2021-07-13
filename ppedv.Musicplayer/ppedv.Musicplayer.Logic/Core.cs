@@ -1,18 +1,25 @@
 ﻿using ppedv.Musicplayer.Model;
-using System;
+using ppedv.Musicplayer.Model.Contracts;
 using System.Linq;
 
 namespace ppedv.Musicplayer.Logic
 {
     public class Core
     {
+        public IRepository Repository { get; }
 
-        public Genre GetGenreOfOldestArtists()
+        public Core(IRepository repository)
         {
+            Repository = repository;
+        }
 
-            var con = new Data.EfCore.EfContext();
+        public Core() : this(new Data.EfCore.EfRepository())
+        { }
 
-            return con.Genres.FirstOrDefault();
+
+        public Artist GetArtistWithMostSongs()
+        {
+            return Repository.GetAll<Artist>().OrderByDescending(x => x.Songs.Count).FirstOrDefault();
         }
 
     }
