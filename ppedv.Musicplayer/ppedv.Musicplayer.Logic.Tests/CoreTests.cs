@@ -1,9 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using ppedv.Musicplayer.Model;
 using ppedv.Musicplayer.Model.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ppedv.Musicplayer.Logic.Tests
 {
@@ -13,7 +12,12 @@ namespace ppedv.Musicplayer.Logic.Tests
         [TestMethod]
         public void GetArtistWithMostSongs_no_Artists_in_DB()
         {
-            throw new NotImplementedException();
+            var mock = new Mock<IRepository>();
+            var core = new Core(mock.Object);
+
+            var result = core.GetArtistWithMostSongs();
+
+            Assert.IsNull(result);
         }
 
         [TestMethod]
@@ -25,23 +29,12 @@ namespace ppedv.Musicplayer.Logic.Tests
 
             Assert.AreEqual("A2", result.Name);
         }
-    }
 
-    class TestRepository : IRepository
-    {
-        public void Add<T>(T item) where T : Model.Entity
+        [TestMethod]
+        public void GetArtistWithMostSongs_3_Artists_the_second_has_most_songs_Moq()
         {
-            throw new NotImplementedException();
-        }
-
-        public void Delete<T>(T item) where T : Model.Entity
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<T> GetAll<T>() where T : Model.Entity
-        {
-            if (typeof(T) == typeof(Artist))
+            var mock = new Mock<IRepository>();
+            mock.Setup(x => x.GetAll<Artist>()).Returns(() =>
             {
                 var s1 = new Song() { Title = "S1" };
                 var s2 = new Song() { Title = "S2" };
@@ -58,25 +51,45 @@ namespace ppedv.Musicplayer.Logic.Tests
                 a2.Songs.Add(s2);
                 a2.Songs.Add(s3);
 
-                return new[] { a1, a2, a3 }.Cast<T>();
-            }
+                return new[] { a1, a2, a3 };
+            });
 
-            throw new NotImplementedException();
+            var core = new Core(mock.Object);
+
+            var result = core.GetArtistWithMostSongs();
+
+            Assert.AreEqual("A2", result.Name);
+
+            mock.Verify(x => x.Save(), Times.Never);
         }
 
-        public T GetById<T>(int id) where T : Model.Entity
-        {
-            throw new NotImplementedException();
-        }
 
-        public void Save()
+        [TestMethod]
+        public void GetArtistWithMostSongs_2_Artists_some_songs_count_the_older_one_is_result()
         {
-            throw new NotImplementedException();
-        }
+            var mock = new Mock<IRepository>();
+            mock.Setup(x => x.GetAll<Artist>()).Returns(() =>
+            {
+                var s1 = new Song() { Title = "S1" };
+                var s2 = new Song() { Title = "S2" };
 
-        public void Update<T>(T item) where T : Model.Entity
-        {
-            throw new NotImplementedException();
+                var a1 = new Artist() { Name = "A1", BirthDate = DateTime.Now.AddYears(-40) };
+                var a2 = new Artist() { Name = "A2", BirthDate = DateTime.Now.AddYears(-50) };
+
+                a1.Songs.Add(s1);
+                a1.Songs.Add(s2);
+                a2.Songs.Add(s1);
+                a2.Songs.Add(s2);
+
+                return new[] { a1, a2 };
+            });
+
+            var core = new Core(mock.Object);
+
+            var result = core.GetArtistWithMostSongs();
+
+            Assert.AreEqual("A2", result.Name);
+
         }
     }
 }
