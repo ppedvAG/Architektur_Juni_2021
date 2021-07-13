@@ -10,7 +10,9 @@ namespace ppedv.Musicplayer.UI.DevConsole
         {
             Console.WriteLine("*** ppedv Musicplayer v0.1 ***");
 
-            var core = new Core();
+            //dependency injection mit referenz
+            var core = new Core(new Musicplayer.Data.EfCore.EfRepository()); 
+
             foreach (var a in core.Repository.GetAll<Artist>())
             {
                 Console.WriteLine($"{a.Name} {a.City} {a.Country} {a.BirthDate}");

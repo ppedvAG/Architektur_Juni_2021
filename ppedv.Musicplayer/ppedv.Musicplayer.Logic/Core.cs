@@ -7,15 +7,19 @@ namespace ppedv.Musicplayer.Logic
     public class Core
     {
         public IRepository Repository { get; }
+        public ISoundDevice SoundDevice { get; }
 
         public Core(IRepository repository)
         {
             Repository = repository;
         }
 
-        public Core() : this(new Data.EfCore.EfRepository())
-        { }
-
+        public Core(IRepository repository, ISoundDevice soundDevice) : this(repository)
+        {
+            SoundDevice = soundDevice;
+            soundDevice.PlaySound(300, 200);
+            soundDevice.PlaySound(440, 200);
+        }
 
         public Artist GetArtistWithMostSongs()
         {

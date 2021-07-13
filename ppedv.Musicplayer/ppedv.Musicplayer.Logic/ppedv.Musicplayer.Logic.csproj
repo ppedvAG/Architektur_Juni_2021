@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ppedv.Musicplayer.Data.EfCore\ppedv.Musicplayer.Data.EfCore.csproj" />
     <ProjectReference Include="..\ppedv.Musicplayer.Model\ppedv.Musicplayer.Model.csproj" />
   </ItemGroup>
 
