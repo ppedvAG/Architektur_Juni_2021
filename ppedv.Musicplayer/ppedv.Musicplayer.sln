@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Musicplayer.Model", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Musicplayer.Data.EfCore", "ppedv.Musicplayer.Data.EfCore\ppedv.Musicplayer.Data.EfCore.csproj", "{FC65F475-D8E9-42B5-9BB7-107DA11AAD7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Musicplayer.Data.EfCore.Tests", "ppedv.Musicplayer.Data.EfCore.Tests\ppedv.Musicplayer.Data.EfCore.Tests.csproj", "{6D47ECCC-5F89-4CAB-9D2C-F39D4150DD49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FC65F475-D8E9-42B5-9BB7-107DA11AAD7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC65F475-D8E9-42B5-9BB7-107DA11AAD7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC65F475-D8E9-42B5-9BB7-107DA11AAD7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D47ECCC-5F89-4CAB-9D2C-F39D4150DD49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D47ECCC-5F89-4CAB-9D2C-F39D4150DD49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D47ECCC-5F89-4CAB-9D2C-F39D4150DD49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D47ECCC-5F89-4CAB-9D2C-F39D4150DD49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
