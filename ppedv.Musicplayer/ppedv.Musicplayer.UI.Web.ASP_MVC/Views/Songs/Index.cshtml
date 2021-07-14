@@ -7,7 +7,9 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+
+    <a asp-action="Create">Create New</a>&nbsp;
+    <a asp-action="CreateDemoData">Create Demo Data</a>
 </p>
 <table class="table">
     <thead>
@@ -20,6 +22,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Length)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -41,12 +46,21 @@
                     @Html.DisplayFor(modelItem => item.Length)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Genre.Description)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new {  id=item.Id }) |
                     @Html.ActionLink("Details", "Details", new {  id=item.Id}) |
                     @Html.ActionLink("Delete", "Delete", new {  id=item.Id })
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6">
+                    @string.Join(" | ",item.Artists.Select(x=>$"{x.Name} aus {x.City}, {x.Country}"))
                 </td>
             </tr>
         }

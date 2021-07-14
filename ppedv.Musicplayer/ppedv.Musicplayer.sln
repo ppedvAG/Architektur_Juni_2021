@@ -31,6 +31,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCuttin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{87CD1FD9-9D19-4A4A-A5E8-C115719CB4F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Musicplayer.DemoData.Bogus", "ppedv.Musicplayer.DemoData.Bogus\ppedv.Musicplayer.DemoData.Bogus.csproj", "{E4A97BB7-36A2-4958-AA74-F3C49EE782B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DemoData", "DemoData", "{E03C5B73-6D28-446C-9682-0D0026AB7577}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +77,10 @@ Global
 		{DC03ECCC-A266-4DB4-93B5-3542B11EF967}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC03ECCC-A266-4DB4-93B5-3542B11EF967}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC03ECCC-A266-4DB4-93B5-3542B11EF967}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4A97BB7-36A2-4958-AA74-F3C49EE782B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4A97BB7-36A2-4958-AA74-F3C49EE782B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4A97BB7-36A2-4958-AA74-F3C49EE782B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4A97BB7-36A2-4958-AA74-F3C49EE782B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +95,7 @@ Global
 		{9A1B427B-71A2-4331-A521-2A5A35CF2331} = {20B8552F-D493-492A-B790-5FD01486EBDE}
 		{9DA9D8DC-E7A5-4278-8FDC-E293C06B9D37} = {20B8552F-D493-492A-B790-5FD01486EBDE}
 		{DC03ECCC-A266-4DB4-93B5-3542B11EF967} = {0A711A00-EEB0-41C0-8063-3D84D752BD29}
+		{E4A97BB7-36A2-4958-AA74-F3C49EE782B9} = {E03C5B73-6D28-446C-9682-0D0026AB7577}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F08706ED-E3E9-4E8E-ABE4-4E87FBD9782B}

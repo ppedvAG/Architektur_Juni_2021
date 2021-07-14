@@ -14,10 +14,25 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC.Controllers
     {
         //Core core = new Core(new Data.EfCore.EfRepository());
         Core core = null;
+        DemoDataService dds = null;
 
-        public SongsController(IRepository repo)
+        public SongsController(IRepository repo, IDemoDataSource source)
         {
             core = new Core(repo);
+            dds = new DemoDataService(repo, source);
+        }
+
+        public ActionResult CreateDemoData()
+        {
+            try
+            {
+                dds.GenerateDemoData();
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: SongsController
@@ -104,5 +119,8 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC.Controllers
                 return View();
             }
         }
+
+
+
     }
 }

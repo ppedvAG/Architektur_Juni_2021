@@ -27,6 +27,8 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC
             services.AddControllersWithViews();
 
             services.AddScoped(typeof(IRepository), typeof(Data.EfCore.EfRepository));
+
+            services.AddSingleton<IDemoDataSource>(new DemoData.Bogus.BogusDataGenerator());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
