@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ppedv.Musicplayer.Logic;
 using ppedv.Musicplayer.Model;
+using ppedv.Musicplayer.Model.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,13 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC.Controllers
 {
     public class SongsController : Controller
     {
-        Core core = new Core(new Data.EfCore.EfRepository());
+        //Core core = new Core(new Data.EfCore.EfRepository());
+        Core core = null;
+
+        public SongsController(IRepository repo)
+        {
+            core = new Core(repo);
+        }
 
         // GET: SongsController
         public ActionResult Index()
