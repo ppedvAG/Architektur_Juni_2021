@@ -23,7 +23,7 @@ namespace ppedv.Musicplayer.Logic
 
         public Artist GetArtistWithMostSongs()
         {
-            return Repository.GetAll<Artist>().OrderByDescending(x => x.Songs.Count).ThenBy(x => x.BirthDate).FirstOrDefault();
+            return Repository.Query<Artist>().OrderByDescending(x => x.Songs.Count).ThenBy(x => x.BirthDate).FirstOrDefault();
         }
 
     }

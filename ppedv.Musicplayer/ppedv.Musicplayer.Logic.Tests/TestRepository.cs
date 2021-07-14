@@ -18,7 +18,7 @@ namespace ppedv.Musicplayer.Logic.Tests
             throw new NotImplementedException();
         }
 
-        public IEnumerable<T> GetAll<T>() where T : Model.Entity
+        public IQueryable<T> Query<T>() where T : Entity
         {
             if (typeof(T) == typeof(Artist))
             {
@@ -37,7 +37,7 @@ namespace ppedv.Musicplayer.Logic.Tests
                 a2.Songs.Add(s2);
                 a2.Songs.Add(s3);
 
-                return new[] { a1, a2, a3 }.Cast<T>();
+                return new[] { a1, a2, a3 }.Cast<T>().AsQueryable();
             }
 
             throw new NotImplementedException();

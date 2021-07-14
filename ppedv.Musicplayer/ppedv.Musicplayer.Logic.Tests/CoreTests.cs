@@ -3,6 +3,7 @@ using Moq;
 using ppedv.Musicplayer.Model;
 using ppedv.Musicplayer.Model.Contracts;
 using System;
+using System.Linq;
 
 namespace ppedv.Musicplayer.Logic.Tests
 {
@@ -34,7 +35,7 @@ namespace ppedv.Musicplayer.Logic.Tests
         public void GetArtistWithMostSongs_3_Artists_the_second_has_most_songs_Moq()
         {
             var mock = new Mock<IRepository>();
-            mock.Setup(x => x.GetAll<Artist>()).Returns(() =>
+            mock.Setup(x => x.Query<Artist>()).Returns(() =>
             {
                 var s1 = new Song() { Title = "S1" };
                 var s2 = new Song() { Title = "S2" };
@@ -51,7 +52,7 @@ namespace ppedv.Musicplayer.Logic.Tests
                 a2.Songs.Add(s2);
                 a2.Songs.Add(s3);
 
-                return new[] { a1, a2, a3 };
+                return new[] { a1, a2, a3 }.AsQueryable();
             });
 
             var core = new Core(mock.Object);
@@ -68,7 +69,7 @@ namespace ppedv.Musicplayer.Logic.Tests
         public void GetArtistWithMostSongs_2_Artists_some_songs_count_the_older_one_is_result()
         {
             var mock = new Mock<IRepository>();
-            mock.Setup(x => x.GetAll<Artist>()).Returns(() =>
+            mock.Setup(x => x.Query<Artist>()).Returns(() =>
             {
                 var s1 = new Song() { Title = "S1" };
                 var s2 = new Song() { Title = "S2" };
@@ -81,7 +82,7 @@ namespace ppedv.Musicplayer.Logic.Tests
                 a2.Songs.Add(s1);
                 a2.Songs.Add(s2);
 
-                return new[] { a1, a2 };
+                return new[] { a1, a2 }.AsQueryable();
             });
 
             var core = new Core(mock.Object);

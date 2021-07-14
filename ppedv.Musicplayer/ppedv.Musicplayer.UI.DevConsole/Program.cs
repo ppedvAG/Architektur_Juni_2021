@@ -23,8 +23,10 @@ namespace ppedv.Musicplayer.UI.DevConsole
             IRepository repo = (IRepository)Activator.CreateInstance(typeMitRepo);
             var core = new Core(repo);
 
+            //todo DI Framework
 
-            foreach (var a in core.Repository.GetAll<Artist>())
+
+            foreach (var a in core.Repository.Query<Artist>().Where(x => x.Name.Contains("a")).OrderBy(x => x.BirthDate).ToList())
             {
                 Console.WriteLine($"{a.Name} {a.City} {a.Country} {a.BirthDate}");
                 Console.WriteLine($"\t{string.Join(", ", a.Songs.Select(x => x.Title))}");
