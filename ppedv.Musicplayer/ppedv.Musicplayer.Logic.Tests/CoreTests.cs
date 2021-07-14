@@ -13,8 +13,11 @@ namespace ppedv.Musicplayer.Logic.Tests
         [TestMethod]
         public void GetArtistWithMostSongs_no_Artists_in_DB()
         {
-            var mock = new Mock<IRepository>();
-            var core = new Core(mock.Object);
+            var repoMock = new Mock<IRepository<Artist>>();
+            var uowMock = new Mock<IUnitOfWork>();
+            uowMock.Setup(x => x.ArtistRepository).Returns(repoMock.Object);
+
+            var core = new Core(uowMock.Object);
 
             var result = core.GetArtistWithMostSongs();
 
@@ -24,7 +27,7 @@ namespace ppedv.Musicplayer.Logic.Tests
         [TestMethod]
         public void GetArtistWithMostSongs_3_Artists_the_second_has_most_songs()
         {
-            var core = new Core(new TestRepository());
+            var core = new Core(new TestUnitOfWork());
 
             var result = core.GetArtistWithMostSongs();
 
@@ -34,8 +37,8 @@ namespace ppedv.Musicplayer.Logic.Tests
         [TestMethod]
         public void GetArtistWithMostSongs_3_Artists_the_second_has_most_songs_Moq()
         {
-            var mock = new Mock<IRepository>();
-            mock.Setup(x => x.Query<Artist>()).Returns(() =>
+            var repoMock = new Mock<IRepository<Artist>>();
+            repoMock.Setup(x => x.Query()).Returns(() =>
             {
                 var s1 = new Song() { Title = "S1" };
                 var s2 = new Song() { Title = "S2" };
@@ -54,22 +57,25 @@ namespace ppedv.Musicplayer.Logic.Tests
 
                 return new[] { a1, a2, a3 }.AsQueryable();
             });
+            var uowMock = new Mock<IUnitOfWork>();
+            uowMock.Setup(x => x.ArtistRepository).Returns(repoMock.Object);
 
-            var core = new Core(mock.Object);
+            var core = new Core(uowMock.Object);
 
             var result = core.GetArtistWithMostSongs();
 
             Assert.AreEqual("A2", result.Name);
 
-            mock.Verify(x => x.Save(), Times.Never);
+            uowMock.Verify(x => x.Save(), Times.Never);
         }
 
 
         [TestMethod]
         public void GetArtistWithMostSongs_2_Artists_some_songs_count_the_older_one_is_result()
         {
-            var mock = new Mock<IRepository>();
-            mock.Setup(x => x.Query<Artist>()).Returns(() =>
+            var repoMock = new Mock<IRepository<Artist>>();
+
+            repoMock.Setup(x => x.Query()).Returns(() =>
             {
                 var s1 = new Song() { Title = "S1" };
                 var s2 = new Song() { Title = "S2" };
@@ -85,7 +91,10 @@ namespace ppedv.Musicplayer.Logic.Tests
                 return new[] { a1, a2 }.AsQueryable();
             });
 
-            var core = new Core(mock.Object);
+            var uowMock = new Mock<IUnitOfWork>();
+            uowMock.Setup(x => x.ArtistRepository).Returns(repoMock.Object);
+
+            var core = new Core(uowMock.Object);
 
             var result = core.GetArtistWithMostSongs();
 

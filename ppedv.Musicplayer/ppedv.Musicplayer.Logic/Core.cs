@@ -6,15 +6,15 @@ namespace ppedv.Musicplayer.Logic
 {
     public class Core
     {
-        public IRepository Repository { get; }
+        public IUnitOfWork UnitOfWork { get; }
         public ISoundDevice SoundDevice { get; }
 
-        public Core(IRepository repository)
+        public Core(IUnitOfWork unitOfWork)
         {
-            Repository = repository;
+            UnitOfWork = unitOfWork;
         }
 
-        public Core(IRepository repository, ISoundDevice soundDevice) : this(repository)
+        public Core(IUnitOfWork unitOfWork, ISoundDevice soundDevice) : this(unitOfWork)
         {
             SoundDevice = soundDevice;
             soundDevice.PlaySound(300, 200);
@@ -23,7 +23,7 @@ namespace ppedv.Musicplayer.Logic
 
         public Artist GetArtistWithMostSongs()
         {
-            return Repository.Query<Artist>().OrderByDescending(x => x.Songs.Count).ThenBy(x => x.BirthDate).FirstOrDefault();
+            return UnitOfWork.ArtistRepository.Query().OrderByDescending(x => x.Songs.Count).ThenBy(x => x.BirthDate).FirstOrDefault();
         }
 
     }

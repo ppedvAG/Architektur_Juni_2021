@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ppedv.Musicplayer.Logic;
 using ppedv.Musicplayer.Model;
 using ppedv.Musicplayer.Model.Contracts;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ppedv.Musicplayer.UI.Web.ASP_MVC.Controllers
 {
@@ -16,10 +13,10 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC.Controllers
         Core core = null;
         DemoDataService dds = null;
 
-        public SongsController(IRepository repo, IDemoDataSource source)
+        public SongsController(IUnitOfWork uow, IDemoDataSource source)
         {
-            core = new Core(repo);
-            dds = new DemoDataService(repo, source);
+            core = new Core(uow);
+            dds = new DemoDataService(uow, source);
         }
 
         public ActionResult CreateDemoData()
@@ -41,14 +38,14 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC.Controllers
             DateTime dt = new(); //.net 5
             var dt2 = new DateTime(); //.net 3.0
 
-            return View(core.Repository.Query<Song>().ToList());
+            return View(core.UnitOfWork.SongsRepository.Query().ToList());
         }
 
         // GET: SongsController/Details/5
         public ActionResult Details(int id)
         {
 
-            return View(core.Repository.Query<Song>().FirstOrDefault(x => x.Id == id));
+            return View(core.UnitOfWork.SongsRepository.Query().FirstOrDefault(x => x.Id == id));
         }
 
         // GET: SongsController/Create
@@ -64,8 +61,8 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC.Controllers
         {
             try
             {
-                core.Repository.Add(song);
-                core.Repository.Save();
+                core.UnitOfWork.SongsRepository.Add(song);
+                core.UnitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -77,7 +74,7 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC.Controllers
         // GET: SongsController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(core.Repository.Query<Song>().FirstOrDefault(x => x.Id == id));
+            return View(core.UnitOfWork.SongsRepository.Query().FirstOrDefault(x => x.Id == id));
         }
 
         // POST: SongsController/Edit/5
@@ -87,8 +84,8 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC.Controllers
         {
             try
             {
-                core.Repository.Update(song);
-                core.Repository.Save();
+                core.UnitOfWork.SongsRepository.Update(song);
+                core.UnitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -100,7 +97,7 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC.Controllers
         // GET: SongsController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(core.Repository.Query<Song>().FirstOrDefault(x => x.Id == id));
+            return View(core.UnitOfWork.SongsRepository.Query().FirstOrDefault(x => x.Id == id));
         }
 
         // POST: SongsController/Delete/5
@@ -110,8 +107,8 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC.Controllers
         {
             try
             {
-                core.Repository.Delete(song);
-                core.Repository.Save();
+                core.UnitOfWork.SongsRepository.Delete(song);
+                core.UnitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
             catch

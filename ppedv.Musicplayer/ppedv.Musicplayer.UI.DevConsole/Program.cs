@@ -15,14 +15,14 @@ namespace ppedv.Musicplayer.UI.DevConsole
             Console.WriteLine("*** ppedv Musicplayer v0.1 ***");
 
             #region dependency injection mit referenz
-            //var core = new Core(new Musicplayer.Data.EfCore.EfRepository()); 
+            //var core = new Core(new Musicplayer.Data.EfCore.EfUnitOfWork()); 
             #endregion
 
             #region dependency injection ohne Referenz auf ppedv.Musicplayer.Data.EfCore, per reflection
             //var efRepoPath = $@"C:\Users\Fred\source\repos\Architektur_Juni_2021\ppedv.Musicplayer\ppedv.Musicplayer.Data.EfCore\bin\Debug\net5.0\ppedv.Musicplayer.Data.EfCore.dll";
             //var ass = Assembly.LoadFrom(efRepoPath);
-            //var typeMitRepo = ass.GetTypes().FirstOrDefault(x => x.GetInterfaces().Contains(typeof(IRepository)));
-            //IRepository repo = (IRepository)Activator.CreateInstance(typeMitRepo);
+            //var typeMitRepo = ass.GetTypes().FirstOrDefault(x => x.GetInterfaces().Contains(typeof(IUnitOfWork)));
+            //IUnitOfWork repo = (IUnitOfWork)Activator.CreateInstance(typeMitRepo);
             //var core = new Core(repo);
             #endregion
 
@@ -30,22 +30,22 @@ namespace ppedv.Musicplayer.UI.DevConsole
             //var efRepoPath = $@"C:\Users\Fred\source\repos\Architektur_Juni_2021\ppedv.Musicplayer\ppedv.Musicplayer.Data.EfCore\bin\Debug\net5.0\ppedv.Musicplayer.Data.EfCore.dll";
             //var ass = Assembly.LoadFrom(efRepoPath);
             //var builder = new ContainerBuilder();
-            //builder.RegisterAssemblyTypes(ass).Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces();
+            //builder.RegisterAssemblyTypes(ass).Where(t => t.Name.EndsWith("UnitOfWork")).AsImplementedInterfaces();
             //var container = builder.Build();
 
-            //var core = new Core(container.Resolve<IRepository>());
+            //var core = new Core(container.Resolve<IUnitOfWork>());
             #endregion
 
             #region AutoFac als DI Framework mit Referenz auf ppedv.Musicplayer.Data.EfCore
             var builder = new ContainerBuilder();
-            builder.RegisterType<Musicplayer.Data.EfCore.EfRepository>().AsImplementedInterfaces();
+            builder.RegisterType<Musicplayer.Data.EfCore.EfUnitOfWork>().AsImplementedInterfaces();
             var container = builder.Build();
 
-            var core = new Core(container.Resolve<IRepository>());
+            var core = new Core(container.Resolve<IUnitOfWork>());
             #endregion
 
 
-            foreach (var a in core.Repository.Query<Artist>().Where(x => x.Name.Contains("a")).OrderBy(x => x.BirthDate).ToList())
+            foreach (var a in core.UnitOfWork.ArtistRepository.Query().Where(x => x.Name.Contains("a")).OrderBy(x => x.BirthDate).ToList())
             {
                 Console.WriteLine($"{a.Name} {a.City} {a.Country} {a.BirthDate}");
                 Console.WriteLine($"\t{string.Join(", ", a.Songs.Select(x => x.Title))}");

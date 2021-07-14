@@ -9,12 +9,12 @@ namespace ppedv.Musicplayer.Logic
 {
     public class DemoDataService
     {
-        private IRepository repo;
+        private IUnitOfWork uow;
         private IDemoDataSource source;
 
-        public DemoDataService(IRepository repo, IDemoDataSource source)
+        public DemoDataService(IUnitOfWork uow, IDemoDataSource source)
         {
-            this.repo = repo;
+            this.uow = uow;
             this.source = source;
         }
 
@@ -22,9 +22,9 @@ namespace ppedv.Musicplayer.Logic
         {
             foreach (var item in source.GetDemoSongsWithGenreAndArtists())
             {
-                repo.Add(item);
+                uow.SongsRepository.Add(item);
             }
-            repo.Save();
+            uow.Save();
         }
     }
 }

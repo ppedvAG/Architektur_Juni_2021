@@ -26,7 +26,8 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC
         {
             services.AddControllersWithViews();
 
-            services.AddScoped(typeof(IRepository), typeof(Data.EfCore.EfRepository));
+            //services.AddScoped(typeof(IRepository), typeof(Data.EfCore.EfRepository));
+            services.AddScoped(typeof(IUnitOfWork), typeof(Data.EfCore.EfUnitOfWork));
 
             services.AddSingleton<IDemoDataSource>(new DemoData.Bogus.BogusDataGenerator());
         }

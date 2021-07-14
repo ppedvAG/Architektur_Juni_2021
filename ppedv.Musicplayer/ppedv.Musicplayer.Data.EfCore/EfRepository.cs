@@ -6,38 +6,39 @@ using System.Linq;
 
 namespace ppedv.Musicplayer.Data.EfCore
 {
-    public class EfRepository : IRepository
-    {
-        EfContext context = new EfContext();
 
-        public void Add<T>(T item) where T : Entity
+    public class EfRepository<T> : IRepository<T> where T : Entity
+    {
+        protected EfContext context = null;
+
+        public EfRepository(EfContext context)
+        {
+            this.context = context;
+        }
+
+        public void Add(T item) 
         {
             //if (typeof(T) == typeof(Song))
             //    context.Songs.Add(item as Song);
             context.Set<T>().Add(item);
         }
 
-        public void Delete<T>(T item) where T : Entity
+        public void Delete(T item) 
         {
             context.Set<T>().Remove(item);
         }
 
-        public IQueryable<T> Query<T>() where T : Entity
+        public IQueryable<T> Query()
         {
             return context.Set<T>();
         }
 
-        public T GetById<T>(int id) where T : Entity
+        public T GetById(int id) 
         {
             return context.Set<T>().Find(id);
         }
 
-        public void Save()
-        {
-            context.SaveChanges();
-        }
-
-        public void Update<T>(T item) where T : Entity
+        public void Update(T item)
         {
              context.Set<T>().Update(item);
         }

@@ -2,15 +2,14 @@
 
 namespace ppedv.Musicplayer.Model.Contracts
 {
-    public interface IRepository
+    public interface IRepository<T> where T : Entity
     {
-        IQueryable<T> Query<T>() where T : Entity;
-        T GetById<T>(int id) where T : Entity;
-        void Add<T>(T item) where T : Entity;
-        void Delete<T>(T item) where T : Entity;
-        void Update<T>(T item) where T : Entity;
-
-        void Save();
+        IQueryable<T> Query();
+        T GetById(int id);
+        void Add(T item);
+        void Delete(T item);
+        void Update(T item);
 
     }
+
 }
