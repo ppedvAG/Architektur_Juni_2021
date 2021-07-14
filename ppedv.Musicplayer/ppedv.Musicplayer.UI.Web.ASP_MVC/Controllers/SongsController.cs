@@ -11,10 +11,13 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC.Controllers
 {
     public class SongsController : Controller
     {
+        Core core = new Core(new Data.EfCore.EfRepository());
+
         // GET: SongsController
         public ActionResult Index()
         {
-            var core = new Core(new Data.EfCore.EfRepository());
+            DateTime dt = new(); //.net 5
+            var dt2 = new DateTime(); //.net 3.0
 
             return View(core.Repository.Query<Song>().ToList());
         }
@@ -22,22 +25,25 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC.Controllers
         // GET: SongsController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+
+            return View(core.Repository.Query<Song>().FirstOrDefault(x => x.Id == id));
         }
 
         // GET: SongsController/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new Song() { Title = "NEU" });
         }
 
         // POST: SongsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Song song)
         {
             try
             {
+                core.Repository.Add(song);
+                core.Repository.Save();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -49,16 +55,18 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC.Controllers
         // GET: SongsController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(core.Repository.Query<Song>().FirstOrDefault(x => x.Id == id));
         }
 
         // POST: SongsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Song song)
         {
             try
             {
+                core.Repository.Update(song);
+                core.Repository.Save();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -70,16 +78,18 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC.Controllers
         // GET: SongsController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(core.Repository.Query<Song>().FirstOrDefault(x => x.Id == id));
         }
 
         // POST: SongsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Song song)
         {
             try
             {
+                core.Repository.Delete(song);
+                core.Repository.Save();
                 return RedirectToAction(nameof(Index));
             }
             catch

@@ -50,7 +50,7 @@ namespace ppedv.Musicplayer.UI.Web.ASP_MVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Songs}/{action=Index}/{id?}");
             });
         }
     }
