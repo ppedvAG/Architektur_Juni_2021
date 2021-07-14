@@ -7,17 +7,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.Musicplayer.Model", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.Musicplayer.Data.EfCore", "ppedv.Musicplayer.Data.EfCore\ppedv.Musicplayer.Data.EfCore.csproj", "{FC65F475-D8E9-42B5-9BB7-107DA11AAD7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Musicplayer.Data.EfCore.Tests", "ppedv.Musicplayer.Data.EfCore.Tests\ppedv.Musicplayer.Data.EfCore.Tests.csproj", "{6D47ECCC-5F89-4CAB-9D2C-F39D4150DD49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.Musicplayer.Data.EfCore.Tests", "ppedv.Musicplayer.Data.EfCore.Tests\ppedv.Musicplayer.Data.EfCore.Tests.csproj", "{6D47ECCC-5F89-4CAB-9D2C-F39D4150DD49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Musicplayer.Logic", "ppedv.Musicplayer.Logic\ppedv.Musicplayer.Logic.csproj", "{B8CD6370-AC98-4C74-B990-4D880668BBA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.Musicplayer.Logic", "ppedv.Musicplayer.Logic\ppedv.Musicplayer.Logic.csproj", "{B8CD6370-AC98-4C74-B990-4D880668BBA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Musicplayer.UI.DevConsole", "ppedv.Musicplayer.UI.DevConsole\ppedv.Musicplayer.UI.DevConsole.csproj", "{E87B77FC-5898-4D27-AD2C-E58F72D2C027}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.Musicplayer.UI.DevConsole", "ppedv.Musicplayer.UI.DevConsole\ppedv.Musicplayer.UI.DevConsole.csproj", "{E87B77FC-5898-4D27-AD2C-E58F72D2C027}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Musicplayer.Logic.Tests", "ppedv.Musicplayer.Logic.Tests\ppedv.Musicplayer.Logic.Tests.csproj", "{84AB49F2-592F-4054-8083-CB738AEF09F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.Musicplayer.Logic.Tests", "ppedv.Musicplayer.Logic.Tests\ppedv.Musicplayer.Logic.Tests.csproj", "{84AB49F2-592F-4054-8083-CB738AEF09F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Musicplayer.Device.Beeper5000", "ppedv.Musicplayer.Device.Beeper5000\ppedv.Musicplayer.Device.Beeper5000.csproj", "{9A1B427B-71A2-4331-A521-2A5A35CF2331}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.Musicplayer.Device.Beeper5000", "ppedv.Musicplayer.Device.Beeper5000\ppedv.Musicplayer.Device.Beeper5000.csproj", "{9A1B427B-71A2-4331-A521-2A5A35CF2331}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Musicplayer.Device.Beeper5000.Tests", "ppedv.Musicplayer.Device.Beeper5000.Tests\ppedv.Musicplayer.Device.Beeper5000.Tests.csproj", "{9DA9D8DC-E7A5-4278-8FDC-E293C06B9D37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.Musicplayer.Device.Beeper5000.Tests", "ppedv.Musicplayer.Device.Beeper5000.Tests\ppedv.Musicplayer.Device.Beeper5000.Tests.csproj", "{9DA9D8DC-E7A5-4278-8FDC-E293C06B9D37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Musicplayer.UI.Web.ASP_MVC", "ppedv.Musicplayer.UI.Web.ASP_MVC\ppedv.Musicplayer.UI.Web.ASP_MVC.csproj", "{DC03ECCC-A266-4DB4-93B5-3542B11EF967}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{9DA9D8DC-E7A5-4278-8FDC-E293C06B9D37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DA9D8DC-E7A5-4278-8FDC-E293C06B9D37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DA9D8DC-E7A5-4278-8FDC-E293C06B9D37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC03ECCC-A266-4DB4-93B5-3542B11EF967}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC03ECCC-A266-4DB4-93B5-3542B11EF967}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC03ECCC-A266-4DB4-93B5-3542B11EF967}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC03ECCC-A266-4DB4-93B5-3542B11EF967}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
