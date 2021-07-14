@@ -10,7 +10,7 @@ namespace ppedv.Musicplayer.Data.EfCore
 
         public IRepository<Genre> GenreRepository => new EfRepository<Genre>(context);
 
-        public IRepository<Artist> ArtistRepository => new EfRepository<Artist>(context);
+        public IArtistRepository ArtistRepository => new EfArtistRespository(context);
 
         public void Save()
         {

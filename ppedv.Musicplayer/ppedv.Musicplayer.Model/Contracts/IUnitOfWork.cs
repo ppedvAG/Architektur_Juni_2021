@@ -4,7 +4,7 @@
     {
         IRepository<Song> SongsRepository { get; }
         IRepository<Genre> GenreRepository { get; }
-        IRepository<Artist> ArtistRepository { get; }
+        IArtistRepository ArtistRepository { get; }
 
         void Save();
 

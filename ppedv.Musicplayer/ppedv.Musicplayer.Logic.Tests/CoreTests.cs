@@ -13,7 +13,8 @@ namespace ppedv.Musicplayer.Logic.Tests
         [TestMethod]
         public void GetArtistWithMostSongs_no_Artists_in_DB()
         {
-            var repoMock = new Mock<IRepository<Artist>>();
+            //var repoMock = new Mock<IRepository<Artist>>();
+            var repoMock = new Mock<IArtistRepository>();
             var uowMock = new Mock<IUnitOfWork>();
             uowMock.Setup(x => x.ArtistRepository).Returns(repoMock.Object);
 
@@ -37,7 +38,8 @@ namespace ppedv.Musicplayer.Logic.Tests
         [TestMethod]
         public void GetArtistWithMostSongs_3_Artists_the_second_has_most_songs_Moq()
         {
-            var repoMock = new Mock<IRepository<Artist>>();
+            var repoMock = new Mock<IArtistRepository>();
+
             repoMock.Setup(x => x.Query()).Returns(() =>
             {
                 var s1 = new Song() { Title = "S1" };
@@ -73,7 +75,8 @@ namespace ppedv.Musicplayer.Logic.Tests
         [TestMethod]
         public void GetArtistWithMostSongs_2_Artists_some_songs_count_the_older_one_is_result()
         {
-            var repoMock = new Mock<IRepository<Artist>>();
+            var repoMock = new Mock<IArtistRepository>();
+
 
             repoMock.Setup(x => x.Query()).Returns(() =>
             {

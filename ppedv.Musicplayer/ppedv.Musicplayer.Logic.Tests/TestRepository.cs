@@ -1,6 +1,7 @@
 ﻿using ppedv.Musicplayer.Model;
 using ppedv.Musicplayer.Model.Contracts;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ppedv.Musicplayer.Logic.Tests
@@ -12,7 +13,7 @@ namespace ppedv.Musicplayer.Logic.Tests
         public IRepository<Genre> GenreRepository => throw new NotImplementedException();
 
         //public IRepository<Artist> ArtistRepository => new TestRepository<Artist>();
-        public IRepository<Artist> ArtistRepository => new TestRepository();
+        public IArtistRepository ArtistRepository => new TestRepository();
 
         public void Save()
         {
@@ -20,7 +21,7 @@ namespace ppedv.Musicplayer.Logic.Tests
         }
     }
 
-    class TestRepository : IRepository<Artist>
+    class TestRepository : IArtistRepository
     {
         public void Add(Artist item)
         {
@@ -60,6 +61,11 @@ namespace ppedv.Musicplayer.Logic.Tests
         }
 
         public void Update(Artist item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Artist> GetAllFromCity(string city)
         {
             throw new NotImplementedException();
         }
